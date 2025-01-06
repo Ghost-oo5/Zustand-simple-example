@@ -5,8 +5,8 @@ import Tasklist from "./components/Task-list";
 const App = () => {
   
   return (
-    <Container>
-      <Typography variant="h1" pb={2}>
+    <Container >
+      <Typography align="center" mt={5} variant="h2" pb={2}>
         Task Tracker
       </Typography>
       <Addtaskform/>

@@ -40,6 +40,7 @@ const Addtaskform = () => {
           <InputLabel>Frequency</InputLabel>
           <Select
             value={frequency}
+            label="frequency"
             onChange={(event) =>
               setFrequency(event.target.value as "daily" | "weekly")
             }
