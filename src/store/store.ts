@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-export interface Task {
+interface Task {
   id: string;
   name: string;
   frequency: "daily" | "weekly";
