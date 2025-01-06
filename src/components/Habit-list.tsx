@@ -3,7 +3,7 @@ import { Box, Button, Grid2, Paper, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DeleteIcon from '@mui/icons-material/Delete';
 const Habitlist = () => {
-  const { habits, removeHabit } = useHabitStore();
+  const { habits, removeHabit, toggleHabit } = useHabitStore();
   const today = new Date().toISOString().split("T")[0];
   return (
     <Box>
@@ -24,6 +24,7 @@ const Habitlist = () => {
                     item.completedDates.includes(today) ? "success" : "primary"
                   }
                   startIcon={<CheckCircleIcon />}
+                  onClick={()=>toggleHabit(item.id, today)}
                 >
                   {item.completedDates.includes(today)
                     ? "Completed"
