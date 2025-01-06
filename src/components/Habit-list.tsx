@@ -3,7 +3,7 @@ import { Box, Button, Grid2, Paper, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DeleteIcon from '@mui/icons-material/Delete';
 const Habitlist = () => {
-  const { habits } = useHabitStore();
+  const { habits, removeHabit } = useHabitStore();
   const today = new Date().toISOString().split("T")[0];
   return (
     <Box>
@@ -29,7 +29,7 @@ const Habitlist = () => {
                     ? "Completed"
                     : "Mark as Complete"}
                 </Button>
-                <Button variant="outlined" color="warning" startIcon={<DeleteIcon/>}>
+                <Button variant="outlined" color="warning" startIcon={<DeleteIcon/>} onClick={()=>removeHabit(item.id)}>
                   Remove
                 </Button>
               </Box>
