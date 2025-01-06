@@ -12,7 +12,7 @@ const Tasklist = () => {
           <Grid2 container alignItems={"center"}>
             <Grid2 size={{ xs: 12, sm: 6 }}>
               <Typography variant="h6">{item.name}</Typography>
-              <Typography variant="body2" color="secondary">
+              <Typography mb={1} variant="body2" color="secondary">
                 {item.frequency}
               </Typography>
             </Grid2>
