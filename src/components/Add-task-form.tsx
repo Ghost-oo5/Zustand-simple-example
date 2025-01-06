@@ -1,4 +1,4 @@
-import useHabitStore from "@/store/store";
+import useTaskStore from "@/store/store";
 import {
     Button,
     FormControl,
@@ -11,16 +11,15 @@ import Box from "@mui/material/Box";
 import React, { useState } from "react";
 
 
-const Addhabitform = () => {
-    const {addHabit, habits } = useHabitStore();
-    console.log("🚀 ~ const:", habits)
+const Addtaskform = () => {
+    const {addTask} = useTaskStore();
   const [name, setName] = useState("");
   const [frequency, setFrequency] = useState<"daily" | "weekly">("daily");
 
   const handleSubmit=(e:React.FormEvent)=>
     {
     e.preventDefault();
-    addHabit(name, frequency);
+    addTask(name, frequency);
     setName('')
     }
   
@@ -32,7 +31,7 @@ const Addhabitform = () => {
         gap:2
       }}>
         <TextField
-          label="Habit Name"
+          label="Task Name"
           value={name}
           onChange={(event) => setName(event.target.value)}
           fullWidth
@@ -50,11 +49,11 @@ const Addhabitform = () => {
           </Select>
         </FormControl>
         <Button type="submit" variant="contained" color="primary">
-            Add Habit
+            Add Task
         </Button>
       </Box>
     </form>
   );
 };
 
-export default Addhabitform;
+export default Addtaskform;

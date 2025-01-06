@@ -1,29 +1,29 @@
 import { create } from "zustand";
-import { devtools } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 
-export interface Habit {
+export interface Task {
   id: string;
   name: string;
   frequency: "daily" | "weekly";
-  completedDates: string;
+  completedDates: string[];
   createdAt: string;
 }
 
-interface HabitState {
-  habits: Habit[];
-  addHabit: (name: string, frequency: "daily" | "weekly") => void;
-  removeHabit: (id: string) => void;
-  toggleHabit: (id: string, date: string) => void;
+interface TaskState {
+  tasks: Task[];
+  addTask: (name: string, frequency: "daily" | "weekly") => void;
+  removeTask: (id: string) => void;
+  toggleTask: (id: string, date: string) => void;
 }
 
-const useHabitStore = create<HabitState>()(
-  devtools((set, get) => ({
-    habits: [],
-    addHabit: (name, frequency) =>
+const useTaskStore = create<TaskState>()(
+  devtools(persist((set) => ({
+    tasks: [],
+    addTask: (name, frequency) =>
       set((state) => {
         return {
-          habits: [
-            ...state.habits,
+          tasks: [
+            ...state.tasks,
             {
               id: Date().toString(),
               name,
@@ -34,23 +34,23 @@ const useHabitStore = create<HabitState>()(
           ],
         };
       }),
-    removeHabit: (id) =>
+    removeTask: (id) =>
       set((state) => ({
-        habits: state.habits.filter((item) => item.id !== id),
+        tasks: state.tasks.filter((item) => item.id !== id),
       })),
-    toggleHabit: (id, date) =>
+    toggleTask: (id, date) =>
       set((state) => ({
-        habits: state.habits.map((habit) =>
-          habit.id === id
+        tasks: state.tasks.map((task) =>
+          task.id === id
             ? {
-                ...habit,
-                completedDates: habit.completedDates.includes(date)
-                  ? habit.completedDates.filter((c) => c !== date)
-                  : [...habit.completedDates, date],
+                ...task,
+                completedDates: task.completedDates.includes(date)
+                  ? task.completedDates.filter((c) => c !== date)
+                  : [...task.completedDates, date],
               }
-            : habit
+            : task
         ),
       })),
-  }))
+  }),{ name: "tasks-local"}))
 );
-export default useHabitStore;
+export default useTaskStore;

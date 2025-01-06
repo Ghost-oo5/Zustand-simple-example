@@ -1,19 +1,16 @@
 import { Container, Typography } from "@mui/material";
-import Addhabitform from "./components/Add-habit-form";
-import { Button } from "./components/ui/button"
-import useHabitStore from "./store/store"
-import Habitlist from "./components/Habit-list";
+import Addtaskform from "./components/Add-task-form";
+import Tasklist from "./components/Task-list";
 
 const App = () => {
-  const store = useHabitStore();
   
   return (
     <Container>
       <Typography variant="h1" pb={2}>
-        Habit Tracker
+        Task Tracker
       </Typography>
-      <Addhabitform/>
-      <Habitlist/>
+      <Addtaskform/>
+      <Tasklist/>
     </Container>
   )
 }
